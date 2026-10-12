@@ -26,6 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.tiptime.ui.theme.TipTimeTheme
 import java.text.NumberFormat
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.material3.TextField
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,10 +92,10 @@ fun TipTimeLayoutPreview() {
 
 @Composable
 fun EditNumberField(modifier: Modifier = Modifier) {
-    val amountInput = "0"
+    var amountInput = mutableStateOf("0")
     TextField(
-        value = amountInput,
-        onValueChange = {},
+        value = amountInput.value,
+        onValueChange = { amountInput.value = it},
         modifier = modifier
     )
 }
