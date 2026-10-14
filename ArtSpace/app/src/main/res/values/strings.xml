@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Art Space</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+
+    <string name="art_1_title">The Starry Night</string>
+    <string name="art_1_artist">Vincent van Gogh</string>
+    <string name="art_1_year">1889</string>
+
+    <string name="art_2_title">The Great Wave off Kanagawa</string>
+    <string name="art_2_artist">Katsushika Hokusai</string>
+    <string name="art_2_year">1831</string>
+
+    <string name="art_3_title">Girl with a Pearl Earring</string>
+    <string name="art_3_artist">Johannes Vermeer</string>
+    <string name="art_3_year">1665</string>
 </resources>
