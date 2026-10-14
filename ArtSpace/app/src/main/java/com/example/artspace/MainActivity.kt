@@ -29,6 +29,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.artspace.ui.theme.ArtSpaceTheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +53,29 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ArtSpaceLayout(modifier: Modifier = Modifier) {
+    var currentArtwork by remember { mutableStateOf(1) }
+
+    val imageRes = when (currentArtwork) {
+        1 -> R.drawable.art_1
+        2 -> R.drawable.art_2
+        else -> R.drawable.art_3
+    }
+    val titleRes = when (currentArtwork) {
+        1 -> R.string.art_1_title
+        2 -> R.string.art_2_title
+        else -> R.string.art_3_title
+    }
+    val artistRes = when (currentArtwork) {
+        1 -> R.string.art_1_artist
+        2 -> R.string.art_2_artist
+        else -> R.string.art_3_artist
+    }
+    val yearRes = when (currentArtwork) {
+        1 -> R.string.art_1_year
+        2 -> R.string.art_2_year
+        else -> R.string.art_3_year
+    }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -59,23 +86,34 @@ fun ArtSpaceLayout(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center
     ) {
         ArtworkWall(
-            imageRes = R.drawable.art_1,
-            contentDescription = R.string.art_1_title
+            imageRes = imageRes,
+            contentDescription = titleRes
         )
         Spacer(modifier = Modifier.height(32.dp))
         ArtworkDescriptor(
-            title = R.string.art_1_title,
-            artist = R.string.art_1_artist,
-            year = R.string.art_1_year
+            title = titleRes,
+            artist = artistRes,
+            year = yearRes
         )
         Spacer(modifier = Modifier.height(24.dp))
         DisplayController(
-            onPreviousClick = { },
-            onNextClick = { }
+            onPreviousClick = {
+                currentArtwork = when (currentArtwork) {
+                    1 -> 3
+                    2 -> 1
+                    else -> 2
+                }
+            },
+            onNextClick = {
+                currentArtwork = when (currentArtwork) {
+                    1 -> 2
+                    2 -> 3
+                    else -> 1
+                }
+            }
         )
     }
 }
-
 @Composable
 fun ArtworkWall(
     @DrawableRes imageRes: Int,
